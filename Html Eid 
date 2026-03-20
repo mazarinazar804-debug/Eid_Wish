@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Mubarak</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    font-family: 'Noto Nastaliq Urdu', serif;
+    background: linear-gradient(to top, #020111, #191970);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}/* Welcome Screen */ #welcome { position: fixed; width: 100%; height: 100vh; background: black; display: flex; justify-content: center; align-items: center; flex-direction: column; z-index: 5; animation: fadeOut 3s ease 5s forwards; }
+
+#welcome h1 { font-size: 3rem; color: gold; animation: glow 2s infinite alternate; }
+
+@keyframes glow { from { text-shadow: 0 0 10px gold; } to { text-shadow: 0 0 40px gold; } }
+
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+
+/* Main Content */ #main { opacity: 0; animation: showMain 3s ease 6s forwards; }
+
+@keyframes showMain { to { opacity: 1; } }
+
+h1 { font-size: 3.5rem; color: gold; }
+
+input, button { padding: 10px; font-size: 1rem; border-radius: 10px; border: none; }
+
+button { background: gold; cursor: pointer; }
+
+#message { margin-top: 20px; font-size: 2rem; }
+
+/* Moon */ .moon { position: absolute; top: 60px; right: 60px; width: 120px; height: 120px; background: gold; border-radius: 50%; box-shadow: 0 0 50px gold; }
+
+/* Mosque */ .mosque { position: absolute; bottom: 0; width: 100%; height: 200px; background: url('https://i.ibb.co/6bQJv8H/mosque.png') no-repeat center bottom; background-size: contain; }
+
+/* Stars */ .star { position: absolute; width: 2px; height: 2px; background: white; animation: twinkle 2s infinite alternate; }
+
+@keyframes twinkle { from { opacity: 0.3; } to { opacity: 1; } }
+
+/* Fireworks */ .firework { position: absolute; width: 5px; height: 5px; border-radius: 50%; animation: explode 1s ease-out infinite; }
+
+@keyframes explode { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(8); opacity: 0; } } </style>
+
+</head>
+<body><div id="welcome">
+    <h1>✨ خوش آمدید ✨</h1>
+    <p>Eid Celebration</p>
+</div><div id="main">
+    <div class="moon"></div>
+    <div class="mosque"></div><h1>🌙 عید مبارک 🌙</h1>
+<h2></h2>
+
+<p>اپنا نام درج کریں:</p>
+<input type="text" id="nameInput" placeholder="آپ کا نام">
+<br><br>
+<button onclick="generateWish()">Wish بنائیں</button>
+
+<div id="message"></div>
+
+</div><audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c6bff9e6a.mp3" type="audio/mpeg">
+</audio><script>
+// Stars
+for (let i = 0; i < 100; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(star);
+}
+
+// Fireworks
+setInterval(() => {
+    let fw = document.createElement("div");
+    fw.className = "firework";
+    fw.style.top = Math.random() * 80 + "vh";
+    fw.style.left = Math.random() * 100 + "vw";
+    fw.style.background = "gold";
+    document.body.appendChild(fw);
+
+    setTimeout(() => fw.remove(), 1000);
+}, 300);
+
+function generateWish() {
+    let name = document.getElementById("nameInput").value;
+    let msg = name
+        ? `🌙 ${name} کو عید مبارک! اللہ آپ کو خوش رکھے ✨\n`
+        : "🌙 عید مبارک! ✨";
+
+    document.getElementById("message").innerText = msg;
+}
+</script></body>
+</html>
